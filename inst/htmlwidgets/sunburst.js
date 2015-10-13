@@ -41,7 +41,11 @@ HTMLWidgets.widget({
     };
 */
 
-    var colors = d3.scale.category20();
+/*    var colors = d3.scale.category20(); */
+    
+    var colors = d3.scale.ordinal()
+            .range(["#C49C94", "#00BBE3", "#E31837", "#0BB14E", "#00539A", "#666666", "#A0A0A0", "#FFE512", "#9467BD", "#FF7F0E", 
+		                "#8C564B", "#98DF8A", "#FF9896", "#AEC7E8", "#FFBB78", "#E377C2", "#C5B0D5", "#F7B6D2", " #DBDB8D", "#9EDAE5"]);
 
     if(x.options.colors !== null){
       try{
