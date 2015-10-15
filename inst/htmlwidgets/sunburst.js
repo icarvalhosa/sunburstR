@@ -16,8 +16,8 @@ HTMLWidgets.widget({
     d3.select(el).select(".sunburst-chart svg").remove();
 
     // Dimensions of sunburst.
-    var width = el.getBoundingClientRect().width;
-    var height = el.getBoundingClientRect().height - 70;
+    var width = el.getBoundingClientRect().width - 150;
+    var height = el.getBoundingClientRect().height - 80;
     var radius = Math.min(width, height) / 2;
 
     d3.select(el).select(".sunburst-chart").append("svg")
@@ -27,7 +27,7 @@ HTMLWidgets.widget({
 
     // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
     var b = {
-      w: 75, h: 30, s: 3, t: 10
+      w: 65, h: 28, s: 3, t: 8
     };
 /*
     // Mapping of step names to colors.
@@ -123,6 +123,7 @@ HTMLWidgets.widget({
       totalSize = path.node().__data__.value;
 
       drawLegend();
+	  d3.select(el).select(".sunburst-legend").style("visibility", "");
       d3.select(el).select(".sunburst-togglelegend").on("click", toggleLegend);
 
      };
@@ -163,8 +164,8 @@ HTMLWidgets.widget({
 
       d3.select(el).selectAll(".sunburst-explanation")
           .style("visibility", "")
-          .style("top",((+circleBound.height - 70)/2) + "px")
-          .style("width",svgBound.width + "px")
+          .style("top",((+circleBound.height - 45)/2) + "px")
+          .style("width", (svgBound.width + 5) + "px")
           .html(explanationString);
 
       var sequenceArray = getAncestors(d);
@@ -263,8 +264,9 @@ HTMLWidgets.widget({
           .attr("y", b.h / 2)
           .attr("dy", "0.35em")
           .attr("text-anchor", "middle")
+		  .attr("font-size", "10px")
           .text(function(d) { return d.name; });
-
+		  
       // Set position for entering and updating nodes.
       g.attr("transform", function(d, i) {
         return "translate(" + i * (b.w + b.s) + ", 0)";
@@ -291,7 +293,7 @@ HTMLWidgets.widget({
 
       // Dimensions of legend item: width, height, spacing, radius of rounded rect.
       var li = {
-        w: 75, h: 30, s: 3, r: 3
+        w: 88, h: 30, s: 3, r: 3
       };
 
       // remove if already drawn
@@ -335,6 +337,7 @@ HTMLWidgets.widget({
           .attr("x", li.w / 2)
           .attr("y", li.h / 2)
           .attr("dy", "0.35em")
+		  .attr("font-size", "10px")
           .attr("text-anchor", "middle")
           .text(function(d) { return d; });
     }
